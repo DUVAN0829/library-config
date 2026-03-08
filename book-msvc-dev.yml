@@ -6,28 +6,28 @@ spring:
     name: book-msvc
 
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:book_msvc}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:12345}
+    url: jdbc:postgresql://localhost:5432/book_msvc
+    username: postgres
+    password: 12345
 
   jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8080/realms/library-management-api}
+          issuer-uri: http://localhost:8080/realms/library-management-api
 
 springdoc:
   swagger-ui:
     oauth:
-      client-id: ${SWAGGER_CLIENT_ID:swagger_test}
+      client-id: swagger_test
       use-pkce-with-authorization-code-grant: true
       additional-query-string-params:
         prompt: login
