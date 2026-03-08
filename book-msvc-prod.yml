@@ -23,11 +23,3 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: ${KEYCLOAK_ISSUER_URI}
-
-springdoc:
-  swagger-ui:
-    oauth:
-      client-id: ${SWAGGER_CLIENT_ID}
-      use-pkce-with-authorization-code-grant: true
-      additional-query-string-params:
-        prompt: login
