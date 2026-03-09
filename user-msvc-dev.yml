@@ -1,0 +1,29 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: user-msvc
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_msvc
+    username: root
+    password: 12345
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/library-management-api
+
+keycloak:
+  server-url: http://localhost:8080
+  realm: library-management-api
+  client-id: user-service
+  client-secret: kzrQJ8b98D6WhCogcWIVO0V7Tkp5HjOV
