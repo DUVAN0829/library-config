@@ -1,0 +1,38 @@
+server:
+  port: 8083
+
+spring:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/loan_msvc
+    username: postgres
+    password: 12345
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  cloud:
+    stream:
+      bindings:
+        loan-events-out-0:
+          destination: loan-events
+      kafka:
+        binder:
+          brokers: localhost:9092
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/library-management-api
+
+copy-msvc:
+  url: http://localhost:8082
+
+user-msvc:
+  url: http://localhost:8084
