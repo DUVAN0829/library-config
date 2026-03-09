@@ -1,0 +1,79 @@
+server:
+  port: ${SERVER_PORT}
+
+spring:
+  application:
+    name: gateway-msvc
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+
+            - id: book-msvc
+              uri: ${BOOK_MSVC_URL}
+              predicates:
+                - Path=/books/api/v1/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: bookCircuit
+                    fallbackUri: forward:/fallback/book
+                    statusCodes: [500,502,503,504]
+
+            - id: copy-msvc
+              uri: ${COPY_MSVC_URL}
+              predicates:
+                - Path=/copies/api/v1/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: copyCircuit
+                    fallbackUri: forward:/fallback/copy
+                    statusCodes: [500,502,503,504]
+
+            - id: loan-msvc
+              uri: ${LOAN_MSVC_URL}
+              predicates:
+                - Path=/loans/api/v1/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: loanCircuit
+                    fallbackUri: forward:/fallback/loan
+                    statusCodes: [500,502,503,504]
+
+            - id: user-msvc
+              uri: ${USER_MSVC_URL}
+              predicates:
+                - Path=/users/api/v1/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: userCircuit
+                    fallbackUri: forward:/fallback/user
+                    statusCodes: [500,502,503,504]
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_URL}/realms/library-management-api
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 20s
+        permitted-number-of-calls-in-half-open-state: 4
+        slow-call-rate-threshold: 50
+        slow-call-duration-threshold: 7s
+
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 10s
+        cancel-running-future: true
