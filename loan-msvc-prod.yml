@@ -1,0 +1,38 @@
+server:
+  port: ${SERVER_PORT}
+
+spring:
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  cloud:
+    stream:
+      bindings:
+        loan-events-out-0:
+          destination: loan-events
+      kafka:
+        binder:
+          brokers: ${KAFKA_BROKER}
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI}
+
+copy-msvc:
+  url: ${COPY_MSVC_URL}
+
+user-msvc:
+  url: ${USER_MSVC_URL}
