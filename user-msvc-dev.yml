@@ -26,4 +26,4 @@ keycloak:
   server-url: http://localhost:8080
   realm: library-management-api
   client-id: user-service
-  client-secret: kzrQJ8b98D6WhCogcWIVO0V7Tkp5HjOV
+  client-secret: pN9aFU0A4n7YUUyk8mtMHfRfxzwUK4cF
