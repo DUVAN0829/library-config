@@ -59,7 +59,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${KEYCLOAK_URL}/realms/library-management-api
+          issuer-uri: ${KEYCLOAK_URL}
 
 resilience4j:
   circuitbreaker:
