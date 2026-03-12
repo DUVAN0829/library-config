@@ -29,6 +29,7 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: ${KEYCLOAK_ISSUER_URI}
+          jwk-set-uri: ${KEYCLOAK_JWK_URI}
 
 book-msvc:
   url: ${BOOK_MSVC_URL}
