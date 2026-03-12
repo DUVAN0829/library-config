@@ -21,6 +21,7 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: ${KEYCLOAK_ISSUER_URI}
+          jwk-set-uri: ${KEYCLOAK_JWK_URI}
 
 keycloak:
   server-url: ${KEYCLOAK_URL}
