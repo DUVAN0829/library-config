@@ -46,7 +46,7 @@ management:
         url: ${OTEL_EXPORTER_OTLP_ENDPOINT}/v1/metrics
   tracing:
     sampling:
-      probability: 0.1
+      probability: 1.0
   endpoints:
     web:
       exposure:
