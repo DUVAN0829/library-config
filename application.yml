@@ -5,3 +5,10 @@ springdoc:
       use-pkce-with-authorization-code-grant: true
       additional-query-string-params:
         prompt: login
+
+spring:
+  sql:
+    init:
+      mode: always
+  jpa:
+    defer-datasource-initialization: true
